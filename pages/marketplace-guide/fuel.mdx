@@ -2,38 +2,39 @@ import { Callout } from "nextra-theme-docs";
 import Navigation from "components/navigation";
 import VideoPlayer from "components/video-player";
 
-# How to deploy an Fuel Beta-4 Node?
+# How to deploy an Fuel Testnet Node?
 
-<VideoPlayer embedId="XDOUn6mibHM" />
+<VideoPlayer embedId="voC47mYUCGk" />
 
 <Callout type="info">
   **NOTE:** Spheron Compute offers the flexibility to create custom
   configurations for your instance.
 </Callout>
 
-Spheron allows you to deploy a compute instance pre-installed with Fuel Beta-4 Node, all set up and ready to use on the Akash Network.
+Spheron allows you to deploy a compute instance pre-installed with Fuel Testnet Node, all set up and ready to use.
 To deploy a Fuel node:
 
-1. Click "New Cluster" on the top right corner.
-2. Choose "Compute" to use CPU-based instances for running containers.
-3. Choose your desired Compute Type option under **Compute Type**.
-4. Select **Start from Marketplace App**.
-5. Pick **Fuel Beta-4 Node** from the marketplace.
-6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **us-east** region for **On Demand**. [Click here](/compute/cluster/compute/#region) to know more.
-7. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just Click "Deploy" to initiate deployment.
-8. Select the instance plan that suits your needs. You can use the "Create Custom Plan" toggle to create custom plans for your CPU based instance.
-9. Configure Storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
-10. Add your "Service Name" and "Sepolia Rpc Endpoint" under **Template Configuration**.
-11. Click "Deploy" to initiate deployment.
+1. Follow [the steps](https://blog.spheron.network/deploy-a-fuel-node-in-minutes-using-spheron-compute#heading-step-1-create-a-free-spheron-network-account) to create a Free Spheron Network Account.  
+2. Upon logging in, you'll be directed to the Create Organization page, where you can give your organization name and choose Avatar. Ensure the **"Compute"** option is selected from the drop-down menu of the **"Start With"** option. Click 'Continue'. 
+3. Next, you'll be taken to a new page. Click the **"Create New Projects"** button. Add 'Project Title' And 'Project Description' and Click 'Create'.
+4. Choose **"Compute"** to use CPU-based instances for running containers.
+5. Choose your desired Compute Type option under **Compute Type**.
+6. Click **"Start from Marketplace App"** and Select **"Fuel Testnet Node"** from the marketplace.
+7. Select your preferred region for deployment. Choosing a region closer to you can improve performance and reduce latency. **US-West** has a higher chance of deploying everything successfully. You can start from the US-West option. [Click here](/compute/cluster/compute/#region) to know more.
+8. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just Click 'Deploy' to initiate deployment.
+9. If you want you can Select the instance plan that suits your needs. You can use the **"Create Custom Plan"** toggle to create custom plans for your CPU based instance.
+10. You have to choose storage from the available options or the custom storage option that fits your needs. This storage will be volatile and is erased when the instance is restarted, redeployed, or shut down. Additionally, you get the option to choose Persistent Storage.
+11. Next, Add your "Service Name" and "Sepolia Rpc Endpoint" under **Template Configuration**. You can add more advanced configuration if required. [Click here](/compute/cluster/compute/#advance-configuration-1) to know more.
+12. Click "Deploy" to initiate deployment.
 
 <Callout type="info">
   **NOTE:** You can get a Sepolia Rpc Endpoint from either
-  [Infura](https://www.infura.io/) or [Alchemy](https://www.alchemy.com/).
+  [Infura](https://www.infura.io/) or [Alchemy](https://www.alchemy.com/). Read [Step-by-step guide](https://blog.spheron.network/deploy-a-fuel-node-in-minutes-using-spheron-compute#heading-step-4-get-sepolia-rpc-endpoint) on our blog.
 </Callout>
 
 ## Verify Installation
 
-- The Fuel Beta-4 Node can be accessed only after the Compute Instance is provisioned.
+- The Fuel Testnet Node can be accessed only after the Compute Instance is provisioned.
   Thus, you need to wait for the installation to complete before you can start using it.
 - As the node starts, the **Instance Logs** will display the output about the operations performed. If you see messages that blocks are being proposed and finalized, you have a running node.
 
@@ -53,11 +54,58 @@ You can generate a new P2P key pairing by running the following command in the *
   a new key pair in the future.
 </Callout>
 
+## Creating & Getting Fuel Wallet
+
+1. Go to the ‘Shell Command’ section on the left side of the dashboard, click on it, and Follow the step-by-step Fuel Wallet Commands to create a wallet.
+
+```
+cd /root/.fuelup/bin
+
+```
+
+2. This will show the current fuelup version.
+
+```
+./fuelup --version
+
+```
+
+3. You need to create a wallet before creating accounts and signing transactions with them. To do so, type the below command:
+
+```
+forc-wallet new
+
+```
+This will require a password to encrypt the wallet. After the wallet is created, you will be shown the mnemonic phrase.
+
+<Callout type="info">
+Note: You will need your password for signing and account derivation, as well as your mnemonic phrase, if you wish to recover your wallet in the future.
+</Callout>
+
+4. To create an account for the wallet and get the wallet address, you can run the following:
+
+```
+forc-wallet account new
+
+```
+This will require your wallet password (the one you chose during creation). This command will always derive the next account that has not yet been derived locally.
+
+5. To list all accounts derived so far, use the following: 
+
+```
+forc-wallet accounts
+
+```
+<Callout type="info">
+Note: When we "create" an account, we just reveal it. All accounts are derived deterministically based on the wallet's mnemonic phrase and derivation path. forc-wallet Will cache the public addresses of derived accounts within ~/.fuel/wallets/accounts
+</Callout>
+
+
 ## Deploy Your Own
 
-Deploy your own Fuel Beta-4 Node with Spheron:
+Deploy your own Fuel Testnet Node with Spheron:
 
-[![Deploy with Spheron](https://bafybeihxqi3jlv6cy2ogh6jjljinntisolbspxcrbgykyv6e5xyzujl3aa.ipfs.sphn.link/spheron-deploy.svg)](https://app.spheron.network/#/compute/marketplace?template=Fuel%20Beta-4%20Node&templateId=65c4582ac22c1ed319c2ad7c)
+[![Deploy with Spheron](https://bafybeihxqi3jlv6cy2ogh6jjljinntisolbspxcrbgykyv6e5xyzujl3aa.ipfs.sphn.link/spheron-deploy.svg)](https://app.spheron.network/#/compute/marketplace?template=Fuel%20Testnet%20Node)
 
 For more information, refer to the [Fuel docs](https://docs.fuel.network/guides/running-a-node/running-a-testnet-node).
 
